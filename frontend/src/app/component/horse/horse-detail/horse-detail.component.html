@@ -1,0 +1,116 @@
+
+<div class="mt-4 mb-4 d-flex flex-row justify-content-between">
+    <h1 class="display-1">{{heading}}</h1>
+    <a type="button"
+            class="btn btn-light align-self-end"
+            routerLink="../../{{horse.id}}/edit"
+            >
+      <i class="bi bi-pencil"></i>
+      Edit
+    </a>
+</div>
+
+
+  <div class="row">
+    <!-- Start name and date of birth row -->
+    <div class="mb-2 col-lg-6">
+      <!-- When nesting rows, always make row > col-* > row. The Bootstrap classes do not work right when an element is both col* and row -->
+      <div class="row">
+        <div class="col-form-label text-md-end text-muted col-md-2 col-lg-4">
+          Name
+        </div>
+        <div class="col-form-label col-md-10 col-lg-8">
+            {{horse.name}}
+        </div>
+      </div>
+    </div>
+    <div class="mb-2 col-lg-6">
+      <div class="row">
+        <div class="col-form-label text-md-end text-muted col-md-2 col-lg-4">
+          Date of Birth
+        </div>
+        <div class="col-form-label col-md-10 col-lg-8">
+            {{dateOfBirthAsLocaleDate(horse)}}
+        </div>
+      </div>
+    </div>
+    <!-- End name and date of birth row -->
+  </div>
+
+  <div class="row">
+    <!-- Start sex and owner row -->
+    <div class="mb-2 col-lg-6">
+      <div class="row">
+        <div class="col-form-label text-md-end text-muted col-md-2 col-lg-4">
+          Sex
+        </div>
+        <div class="col-form-label col-md-10 col-lg-8">
+            {{formatGender(horse.sex)}}
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-2 col-lg-6">
+      <div class="row">
+        <div class="col-form-label text-md-end text-muted col-md-2 col-lg-4">
+          Owner
+        </div>
+        <div class="col-form-label col-md-10 col-lg-8">
+            {{formatOwnerName(horse.owner)}}
+        </div>
+      </div>
+    </div>
+    <!-- End sex and owner row -->
+  </div>
+
+  <div class="row">
+    <!-- Start mother and father row -->
+    <div class="mb-2 col-lg-6">
+      <div class="row">
+        <div class="col-form-label text-md-end text-muted col-md-2 col-lg-4">
+          Mother
+        </div>
+        <div class="col-form-label col-md-10 col-lg-8" *ngIf="horse.mother"
+          routerLink="../../{{horse.mother.id}}/details">
+            {{formatParentName(horse.mother)}}
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-2 col-lg-6">
+      <div class="row">
+        <div class="col-form-label text-md-end text-muted col-md-2 col-lg-4">
+          Father
+        </div>
+        <div class="col-form-label col-md-10 col-lg-8" *ngIf="horse.father"
+            routerLink="../../{{horse.father.id}}/details">
+            {{formatParentName(horse.father)}}
+        </div>
+      </div>
+    </div>
+    <!-- End mother and father row -->
+  </div>
+
+
+  <div class="row">
+    <!-- No row and col-* here. We want this to always span the whole width. -->
+    <div class="col-form-label text-md-end text-md-end text-muted col-md-2">
+      Description
+    </div>
+    <div class="col-md-10">
+        <div class="col-form-label col-md-10 col-lg-8">
+            {{getDescription(horse)}}
+        </div>
+    </div>
+  </div>
+
+  <div class="mt-4 d-flex flex-row">
+    <button type="button"
+            class="btn btn-danger"
+            *ngIf="!modeIsCreate"
+            (click)="deleteHorse()"
+            >
+      <i class="bi bi-trash"></i>
+      Delete
+    </button>
+  </div>

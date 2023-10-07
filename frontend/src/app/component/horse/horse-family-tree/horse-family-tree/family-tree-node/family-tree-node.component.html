@@ -1,0 +1,30 @@
+<div *ngIf="horse" id="container-node" class="d-flex justify-content-between align-items-center">
+    <div>
+        <span style=" margin-right: 20px; margin-left: 10px;">{{horse.name}}</span>
+        <i *ngIf="horse.sex === 'MALE'" class="bi bi-gender-male"></i>
+        <i *ngIf="horse.sex === 'FEMALE'" class="bi bi-gender-female"></i>
+    </div>
+    <span class=""></span>
+
+    <div style="margin-right: 20px;">
+      <span style="margin-right: 20px;">
+        {{dateOfBirthAsLocaleDate(horse)}}
+      </span>
+        <a class="btn btn-sm responsive-info-button"
+            routerLink="../../{{horse.id}}/details"
+           aria-label="Show horse details">
+          <i class="bi bi-info-lg"></i>
+        </a>
+        <a class="btn btn-sm responsive-warning-button"
+            routerLink="../../{{horse.id}}/edit"
+            aria-label="Edit horse">
+          <i class="bi bi-pencil"></i>
+        </a>
+        <a class="btn btn-sm responsive-danger-button"
+           aria-label="Delete horse"
+           (click)="deleteHorse(horse)">
+          <i class="bi bi-trash"></i>
+        </a>
+    </div>
+    
+</div>

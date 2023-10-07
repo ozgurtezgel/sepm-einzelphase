@@ -1,0 +1,52 @@
+<div class="mt-4 mb-4 d-flex flex-row justify-content-between">
+  <h1 class="display-1">{{heading}}</h1>
+</div>
+
+
+<div class="d-flex flex-row w-auto">
+  <button class="btn btn-primary mr-1" (click)="reloadHorses()" aria-label="Load horses">
+    <i class="bi bi-arrow-clockwise"></i>
+    Load
+  </button>
+  <input  style="margin-left: 5px;" 
+          type="number" 
+          min="1" 
+          [(ngModel)]="generations"
+          (change)="updateFamilyTree()"
+          class="rounded">
+</div>
+
+<div style="width: 90%; margin-top: 20px;">
+  <ng-container
+    *ngIf="familyTree !== null"
+    [ngTemplateOutlet]="treeNode"
+    [ngTemplateOutletContext]="{ $implicit: familyTree }"
+  >   
+  </ng-container>
+</div>
+
+<ng-template #treeNode let-data>
+<ul>
+  <details open>
+    <summary id="list-item" class="rounded">
+      <app-family-tree-node id="node-component" [horse]="data" (deleted)="onDeleted($event)">
+      </app-family-tree-node>
+    </summary>
+
+      <ng-container 
+        *ngIf="data.mother"
+        [ngTemplateOutlet]="treeNode"
+        [ngTemplateOutletContext]="{ $implicit: data.mother }"
+        >
+      </ng-container>
+
+      <ng-container
+        *ngIf="data.father"
+        [ngTemplateOutlet]="treeNode"
+        [ngTemplateOutletContext]="{ $implicit: data.father }"
+      >
+      </ng-container>
+
+  </details>
+</ul>
+</ng-template>

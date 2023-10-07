@@ -1,0 +1,33 @@
+@use "sass:map";
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+
+.min-width {
+    width: 0;
+}
+
+.center-td > td {
+    vertical-align: middle;
+}
+
+.responsive-info-button:hover {
+    background-color: #0dcaf0;
+}
+
+.responsive-danger-button:hover {
+    background-color: #dc3545;
+}
+
+.responsive-warning-button:hover {
+    background-color: #ffc107;
+}
+
+.responsive-info-button, .responsive-warning-button, .responsive-danger-button {
+    background-color: #f0f0f0;
+}
+
+#container-node {
+    height: 50px;
+}
+
